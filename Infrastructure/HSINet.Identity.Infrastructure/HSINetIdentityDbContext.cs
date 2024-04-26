@@ -1,6 +1,9 @@
-﻿namespace HSINet.Identity.Infrastructure;
+﻿using HSINet.Shared.Transactional;
+using Microsoft.EntityFrameworkCore;
 
-public class HSINetIdentityDbContext
+namespace HSINet.Identity.Infrastructure;
+
+public class HSINetIdentityDbContext : DbContext, IUnitOfWork
 {
 
 }

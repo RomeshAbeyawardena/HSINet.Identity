@@ -15,7 +15,20 @@ public class AccessTokenRepository(HSINetIdentityDbContext context,
     {
         return this.Query(filter, (c,b) =>
         {
-            
+            if(filter.UserId.HasValue)
+            {
+                b.And(b => b.UserId == filter.UserId);
+            }
+
+            if(filter.AccessTokenId.HasValue)
+            {
+                b.And(b => b.Id == filter.AccessTokenId);
+            }
+
+            if(filter.TenantId.HasValue)
+            {
+                b.And(b => b.TenantId == filter.TenantId);
+            }
         });
     }
 
@@ -24,8 +37,8 @@ public class AccessTokenRepository(HSINetIdentityDbContext context,
         return await Filter(filter).FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<IEnumerable<AccessToken>> GetAccessTokens(Filter filter, CancellationToken cancellationToken)
+    public async Task<IEnumerable<AccessToken>> GetAccessTokens(Filter filter, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await Filter(filter).ToListAsync(cancellationToken);
     }
 }

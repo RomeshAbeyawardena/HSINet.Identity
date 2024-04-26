@@ -13,7 +13,7 @@ namespace HSINet.Identity.Domain.Tenants
         public string? SubHeading { get; set; }
         public string? Footer { get; set; }
         public DateTimeOffset Created { get; set; }
-        public DateTimeOffset Modified { get; set; }
+        public DateTimeOffset? Modified { get; set; }
         public bool IsEnabled { get; set; }
     }
 }

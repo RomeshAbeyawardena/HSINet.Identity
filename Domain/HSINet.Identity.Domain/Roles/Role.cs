@@ -10,6 +10,6 @@ namespace HSINet.Identity.Domain.Roles
         public bool IsEnabled { get; set; }
         public bool IsSuperUser { get; set; }
         public DateTimeOffset Created { get; set; }
-        public DateTimeOffset Modified { get; set; }
+        public DateTimeOffset? Modified { get; set; }
     }
 }

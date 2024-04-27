@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{8EFDE77C-22A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSINet.Identity.Api", "Api\HSINet.Identity.Api\HSINet.Identity.Api.csproj", "{532BBD10-4736-4E1D-A3A4-3D2B138A636D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{16601E54-C64B-470A-BD27-4C2E29FB99FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSINet.Identity.Http", "Shared\HSINet.Identity.Http\HSINet.Identity.Http.csproj", "{1ABC81D8-0541-4F76-A9D5-F6C0F238E05A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{532BBD10-4736-4E1D-A3A4-3D2B138A636D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532BBD10-4736-4E1D-A3A4-3D2B138A636D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532BBD10-4736-4E1D-A3A4-3D2B138A636D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABC81D8-0541-4F76-A9D5-F6C0F238E05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABC81D8-0541-4F76-A9D5-F6C0F238E05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABC81D8-0541-4F76-A9D5-F6C0F238E05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABC81D8-0541-4F76-A9D5-F6C0F238E05A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{4723F2B6-BB89-4FF7-90D8-4BE9795B8BCC} = {4476D703-5901-4AE8-9770-BA5DD2B9EF4D}
 		{65DF7EF6-1101-48E7-BBED-3C29314BB2F6} = {08C73311-C929-4F1F-A8CA-93E0E27175FF}
 		{532BBD10-4736-4E1D-A3A4-3D2B138A636D} = {8EFDE77C-22A0-4B96-B3E0-DAB85E2D1F39}
+		{1ABC81D8-0541-4F76-A9D5-F6C0F238E05A} = {16601E54-C64B-470A-BD27-4C2E29FB99FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7DA64A87-D2A2-4CC1-B5BD-B8A91E8FD31C}

@@ -29,7 +29,7 @@ public static class ApiResponse
     }
 }
 
-public class ApiResponse<T> : IStatusCodeActionResult
+public class ApiResponse<T> : IResult
 {
     public T? Data { get; init; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -41,9 +41,9 @@ public class ApiResponse<T> : IStatusCodeActionResult
     public DateTimeOffset RequestedTimeStampUtc { get; set; }
     public int? StatusCode => Code;
 
-    public Task ExecuteResultAsync(ActionContext context)
+    public Task ExecuteAsync(HttpContext httpContext)
     {
-        var response = context.HttpContext.Response;
+        var response = httpContext.Response;
         response.StatusCode = StatusCode.GetValueOrDefault(200);
         return response.WriteAsJsonAsync(this);
     }

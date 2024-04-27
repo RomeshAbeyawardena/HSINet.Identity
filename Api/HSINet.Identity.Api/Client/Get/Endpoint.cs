@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HSINet.Identity.Api.Client.Get;
 
-public static class Endpoint
+public static class V1
 {
     /// <summary>
     /// Generates a client token using the client ID and client secret
@@ -13,9 +13,9 @@ public static class Endpoint
     /// <param name="clientId"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<IActionResult> GetClientToken (
+    public static async Task<IResult> GetClientToken (
         IMediator mediator,
-        string clientSecret, Guid clientId,
+        [FromHeader]string clientSecret, [FromHeader] Guid clientId,
         CancellationToken cancellationToken)
     {
         var token = await mediator.Send(new Query {
@@ -37,8 +37,8 @@ public static class Endpoint
     /// </summary>
     /// <param name="clientToken"></param>
     /// <returns></returns>
-    public static async Task<IActionResult> VerifyToken(IMediator mediator,
-        string clientToken, CancellationToken cancellationToken)
+    public static async Task<IResult> VerifyToken(IMediator mediator,
+        [FromHeader] string clientToken, CancellationToken cancellationToken)
     {
         var token = await mediator.Send(new Query
         {

@@ -3,10 +3,8 @@ import PrimeVue from 'primevue/config';
 import App from './App.vue';
 import "./assets/themes/basic.css";
 import "primeflex/primeflex.scss";
-
-const field = document.getElementById("data-field");
-
+import "primevue/resources/themes/aura-dark-green/theme.css";
 createApp(App)
     .use(PrimeVue, {
-        unstyled: true
+        
     }).mount('#app');

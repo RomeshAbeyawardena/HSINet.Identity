@@ -17,8 +17,8 @@ export interface Register {
     emailAddress:IField;
     password:IField;
     confirmPassword:IField;
-    firstName:IField;
-    lastName:IField;
+    displayName:IField;
+    crmReference:IField;
 }
 
 export interface Fields {

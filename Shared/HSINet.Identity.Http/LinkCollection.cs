@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HSINet.Identity.Http;
 
-public class LinkCollection : IEnumerable<ILink>
+public class LinkCollection : IReadOnlyDictionary<string, ILink>
 {
     private readonly ConcurrentDictionary<string, ILink> _links;
+
+    public IEnumerable<string> Keys => _links.Keys;
+    public IEnumerable<ILink> Values => _links.Values;
+    public int Count => _links.Count;
+
+    public ILink this[string key] { get => _links[key]; }
 
     public LinkCollection()
     {
@@ -26,12 +33,22 @@ public class LinkCollection : IEnumerable<ILink>
         return this;
     }
 
-    public IEnumerator<ILink> GetEnumerator()
+    public bool ContainsKey(string key)
     {
-        return _links.Values.GetEnumerator();
+        return _links.ContainsKey(key);
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
+    public bool TryGetValue(string key, [MaybeNullWhen(false)] out ILink value)
+    {
+        return _links.TryGetValue(key, out value);
+    }
+
+    IEnumerator<KeyValuePair<string, ILink>> IEnumerable<KeyValuePair<string, ILink>>.GetEnumerator()
+    {
+        return _links.GetEnumerator();
+    }
+
+    public IEnumerator GetEnumerator()
     {
         return GetEnumerator();
     }

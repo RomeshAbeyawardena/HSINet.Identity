@@ -23,33 +23,35 @@
     }
 </script>
 <template>
-    <Card>
-        <template #content>
-            <div class="field">
-                <label  :for="loginFields.emailAddress.name" 
-                        class="label mr-2">
-                    Email Address</label>
-                <InputText  :name="loginFields.emailAddress.name"
-                            :id="loginFields.emailAddress.name"
-                            class="w-full" 
-                            v-model="email" />
-            </div>
-            <div class="field">
-                <label  :for="loginFields.password.name"
-                        class="label mr-2">Password</label>
-                <InputText  :name="loginFields.password.name"
-                            :id="loginFields.password.name"
-                            class="w-full"
-                            v-model="password" />
-            </div>
-        </template>
-        <template #footer>
-            <div class="flex flex-auto justify-content-center">
-            <Button label="Login" class="mr-2" />
-            <Button label="Register" />
-            </div>
-        </template>
-    </Card>
+    <form :action="loginFields.formAction" :method="loginFields.formMethod">
+        <Card>
+            <template #content>
+                <div class="field">
+                    <label  :for="loginFields.emailAddress.name" 
+                            class="label mr-2">
+                        Email Address</label>
+                    <InputText  :name="loginFields.emailAddress.name"
+                                :id="loginFields.emailAddress.name"
+                                class="w-full" 
+                                v-model="email" />
+                </div>
+                <div class="field">
+                    <label  :for="loginFields.password.name"
+                            class="label mr-2">Password</label>
+                    <InputText  :name="loginFields.password.name"
+                                :id="loginFields.password.name"
+                                class="w-full"
+                                v-model="password" />
+                </div>
+            </template>
+            <template #footer>
+                <div class="flex flex-auto justify-content-center">
+                <Button label="Login" class="mr-2" />
+                <Button label="Register" />
+                </div>
+            </template>
+        </Card>
+    </form>
 </template>
 
 <style lang="scss" scoped>

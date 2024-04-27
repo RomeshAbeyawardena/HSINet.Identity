@@ -8,12 +8,17 @@ export interface IField {
     options?: string[];
 }
 
-export interface Login {
+export interface IForm {
+    formAction?:string;
+    formMethod?:string;
+}
+
+export interface Login extends IForm {
     emailAddress:IField;
     password:IField;
 }
 
-export interface Register {
+export interface Register extends IForm {
     emailAddress:IField;
     password:IField;
     confirmPassword:IField;
@@ -23,4 +28,5 @@ export interface Register {
 
 export interface Fields {
     login:Login;
+    register:Register;
 }

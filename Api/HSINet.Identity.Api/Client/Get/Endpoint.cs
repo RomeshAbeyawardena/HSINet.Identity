@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using HSINet.Identity.Http;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HSINet.Identity.Api.Client.Get;
@@ -13,10 +14,22 @@ public static class Endpoint
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static async Task<IActionResult> GetClientToken (
+        IMediator mediator,
         string clientSecret, Guid clientId,
         CancellationToken cancellationToken)
     {
-        return new OkObjectResult("hello");
+        var token = await mediator.Send(new Query {
+            ClientId = clientId,
+            Secret = clientSecret
+        }, cancellationToken);
+
+        //also check the token as it may not be initalised yet
+        if (token == null || string.IsNullOrWhiteSpace(token.Value))
+        {
+            return ApiResponse.Failure("Invalid or expired token", 404);
+        }
+
+        return ApiResponse.Result(token);
     }
 
     /// <summary>
@@ -24,8 +37,20 @@ public static class Endpoint
     /// </summary>
     /// <param name="clientToken"></param>
     /// <returns></returns>
-    public static async Task<IStatusCodeHttpResult> VerifyToken(string clientToken)
+    public static async Task<IActionResult> VerifyToken(IMediator mediator,
+        string clientToken, CancellationToken cancellationToken)
     {
-        return new StatusCodeHttpResult();
+        var token = await mediator.Send(new Query
+        {
+            ClientToken = clientToken
+        }, cancellationToken);
+
+        //also check the token as it may not be initalised yet
+        if(token == null || string.IsNullOrWhiteSpace(token.Value))
+        {
+            return ApiResponse.Failure("Invalid or expired token", 404);
+        }
+
+        return ApiResponse.Result(token);
     }
 }

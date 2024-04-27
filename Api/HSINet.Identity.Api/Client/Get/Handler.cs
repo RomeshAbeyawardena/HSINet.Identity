@@ -1,11 +1,13 @@
-﻿using HSINet.Identity.Domain.AccessTokens;
+﻿using HSINet.Identity.Api.AccessTokens.Post;
+using HSINet.Identity.Domain.AccessTokens;
 using HSINet.Identity.Domain.Clients;
 using MediatR;
 
 namespace HSINet.Identity.Api.Client.Get;
 
 public class Handler(IClientRepository clientRepository,
-    TimeProvider timeProvider) : IRequestHandler<Query, AccessToken?>
+    IMediator mediator, TimeProvider timeProvider) 
+    : IRequestHandler<Query, AccessToken?>
 {
     public async Task<AccessToken?> Handle(Query request, CancellationToken cancellationToken)
     {
@@ -16,6 +18,24 @@ public class Handler(IClientRepository clientRepository,
             && f.AccessToken.IsEnabled 
             && f.AccessToken.ValidFrom < utcNow 
             && f.AccessToken.ValidTo >= utcNow);
+
+        if(cAt == null)
+        {
+            var accessToken = await mediator.Send(new Command {
+                Entity = new AccessToken { 
+
+                },
+                CommitChanges = false,
+            }, cancellationToken);
+
+            var client = await clientRepository.FindAsync([request.ClientId!], cancellationToken);
+
+            if(client != null)
+            {
+                
+            }
+        }
+
         return cAt?.AccessToken;
         
     }
